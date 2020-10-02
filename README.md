@@ -22,3 +22,9 @@ Error: EISDIR: illegal operation on a directory, read
     at async Generator.generate (/home/jsanders/.nvm/versions/node/v12.16.3/lib/node_modules/@vue/cli/lib/Generator.js:175:5)
     at async runGenerator (/home/jsanders/.nvm/versions/node/v12.16.3/lib/node_modules/@vue/cli/lib/invoke.js:111:3)
 ```
+
+# Proposed fix
+
+Make @vue/cli use version 4 of yaml-front-matter. Breaking changes: https://github.com/dworthen/js-yaml-front-matter/blob/master/CHANGELOG.md#breaking-changes
+
+Should be safe to simply update because vue-cli only uses `loadFront` function to process file contents. Version 4 only allows file contents to be processed, where as version 3 allowed file paths (hence the breaking change). 
